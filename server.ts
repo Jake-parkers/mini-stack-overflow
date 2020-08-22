@@ -1,6 +1,6 @@
 import app from "./src/app";
-import Logger from "./src/libraries/logger";
 import { handler } from "./src/libraries/error";
+import logger from "./src/libraries/logger";
 
 const port = process.env.PORT || 3000;
 
@@ -16,5 +16,5 @@ process.on('uncaughtException', (error: Error) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server listening on Port ${port}\n Press Ctrl-C to stop it\n`);
+    logger.info(`Server listening on Port ${port}\n Press Ctrl-C to stop it\n`);
 });

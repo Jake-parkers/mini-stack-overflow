@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import morgan from "morgan";
 import Logger from "./libraries/logger";
 import cors from "cors";
-import router from "./components"
+import router from "./components";
 
 const stream = {
     write: (text: string) => {
