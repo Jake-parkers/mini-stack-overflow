@@ -1,3 +1,0 @@
-{"message":"::1 - - [22/Aug/2020:15:08:21 +0000] \"GET / HTTP/1.1\" 404 139 \"-\" \"PostmanRuntime/7.26.3\"\n","level":"info","service":"Mini Stack Overflow","timestamp":"2020-08-22 16:08:21"}
-{"message":"::1 - - [22/Aug/2020:15:09:19 +0000] \"GET /api HTTP/1.1\" 404 142 \"-\" \"PostmanRuntime/7.26.3\"\n","level":"info","service":"Mini Stack Overflow","timestamp":"2020-08-22 16:09:19"}
-{"message":"::1 - - [22/Aug/2020:15:09:29 +0000] \"GET /api HTTP/1.1\" 200 25 \"-\" \"PostmanRuntime/7.26.3\"\n","level":"info","service":"Mini Stack Overflow","timestamp":"2020-08-22 16:09:29"}
