@@ -10,5 +10,4 @@ const dbConfig = {
         serverSelectionTimeoutMS: 30000,
     }
 }
-
 export default dbConfig;
