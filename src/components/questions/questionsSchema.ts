@@ -4,7 +4,9 @@ export interface Question {
     title: string,
     body: object,
     tags: string[],
-    askedBy: string
+    askedBy: string,
+    upvoters?: string[],
+    upvotes?: number
 }
 
 const QuestionsSchema = new mongoose.Schema({
@@ -23,6 +25,10 @@ const QuestionsSchema = new mongoose.Schema({
     askedBy: {
         type: mongoose.Types.ObjectId,
         required: true
+    },
+    upvoters: {
+        type: Array,
+        required: false
     }
 }, {timestamps: true});
 

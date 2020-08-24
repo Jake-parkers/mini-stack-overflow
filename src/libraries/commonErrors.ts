@@ -21,5 +21,7 @@ export enum CommonErrors {
 
     INVALID_TOKEN_TYPE = "Invalid Token Type",
 
-    UNAUTHORIZED = "User is not authorized to access resource"
+    UNAUTHORIZED = "User is not authorized to access resource",
+
+    INVALID_POST = "Post does not exist"
 }

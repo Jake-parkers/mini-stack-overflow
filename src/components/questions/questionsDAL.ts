@@ -29,6 +29,18 @@ class QuestionsDAL {
             throw error;
         }
     }
+
+    async upvote(questionId: string, userId: string) {
+        try {
+            await QuestionModel.findByIdAndUpdate(questionId, {
+                $addToSet: {
+                    upvoters: userId
+                }
+            })
+        } catch(error) {
+            throw error;
+        }
+    }
 }
 
 export default new QuestionsDAL();
