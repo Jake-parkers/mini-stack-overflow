@@ -19,7 +19,7 @@ const QuestionsSchema = new mongoose.Schema({
         required: true
     },
     body: {
-        type: Object,
+        type: Array,
         required: true
     },
     tags: {

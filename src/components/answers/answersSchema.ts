@@ -17,7 +17,7 @@ const AnswersSchema = new mongoose.Schema({
         required: true
     },
     body: {
-        type: Object,
+        type: Array,
         required: true
     },
     excerpt: {

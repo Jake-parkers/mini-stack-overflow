@@ -41,9 +41,14 @@ NODE_ENV=production
 npm start
 ```
 
+## Data Model
+![Simple Stack Overflow Clone Data Model](/assets/images/datamodel.PNG)
+
+The data model used for this project is shown below
+
 The search implementation in this project was inspired by that of Stack Overflow.
 
-![Stack Overflow Search](/assets/images/stackOverflowSearch.png)
+![Stack Overflow Search](/assets/images/stackOverflowSearch.PNG)
 
 The assumptions made for search are:
 
