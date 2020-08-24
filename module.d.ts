@@ -8,5 +8,7 @@ declare namespace NodeJS {
         JWT_SECRET: string
         API_AUDIENCE: string
         API_ISSUER: string
+        DEFAULT_PAGE: string
+        DEFAULT_LIMIT: string
     }
 }
