@@ -63,6 +63,8 @@ The search implementation in this project was inspired by that of Stack Overflow
 
 ![Stack Overflow Search](/assets/images/stackOverflowSearch.PNG)
 
+It is assumed that the hypothetical frontend will be able to determine the search type based on whether a ```[tag]```, a user ```user:John Doe```, a question ```question:Who is it``` or an ```answer:It's me``` is being searched for. And then pass the appropriate ```type``` and ```query``` to the search endpoint.
+
 The assumptions made for search are:
 
 - a user can search by a tag
