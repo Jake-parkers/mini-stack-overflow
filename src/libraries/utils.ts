@@ -74,6 +74,18 @@ export default class Utils {
         return payload;
     }
 
+    static computePagination(total: number, data: any, page: number, limit: number) {
+        const totalPages = Math.ceil(total / limit);
+            const response: Paginate = {
+                totalPages,
+                currentPage: page,
+                data,
+                prevPage: page === 1 ? null : page - 1,
+                nextPage: Utils.getNextPage(total, totalPages, limit, page)
+            }
+            return response;
+    }
+
     static getNextPage(totalDocs: number, totalPages: number, limit: number, currentPage: number) {
         if ((totalDocs / limit) > 1) {
             const nextPage = currentPage + 1;

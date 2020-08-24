@@ -30,14 +30,39 @@ class QuestionsDAL {
         }
     }
 
-    async upvote(questionId: string, userId: string) {
+    async findQuestionByTag(queryTag: string, page: number, limit: number) {
         try {
-            await QuestionModel.findByIdAndUpdate(questionId, {
-                $addToSet: {
-                    upvoters: userId
-                }
-            })
+            return await QuestionModel.find({ tags: {
+                $in: [queryTag]
+            }}).limit(limit).skip((page - 1) * limit);
         } catch(error) {
+            throw error;
+        }
+    }
+
+    async totalQuestionByTag(queryTag: string) {
+        try {
+            return await QuestionModel.find({ tags: {
+                $in: [queryTag]
+            }}).countDocuments();
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async findQuestionByKeyword(query: string, page: number, limit: number) {
+        try {
+            // this uses text search with indexes on the `title` and `excerpt` fields of the Question Collection 
+            return await QuestionModel.find({ $text: { $search: query } }).limit(limit).skip((page - 1) * limit);
+        } catch (error) { 
+            throw error;
+        }
+    }
+
+    async totalQuestionByKeyword(query: string) {
+        try {
+            return await QuestionModel.find({ $text: { $search: query } }).countDocuments();
+        } catch (error) {
             throw error;
         }
     }

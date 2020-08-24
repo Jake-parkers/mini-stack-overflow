@@ -15,7 +15,7 @@ class QuestionsController {
     }
 
     async view(page: number, limit: number) {
-        let result = await questionsService.viewQuestions({page, limit});
+        let result = await questionsService.viewQuestions(page, limit);
         if (result instanceof AppError) return new ErrorResponse(Status.ERROR, "", result.httpCode);
         return new SuccessResponse(Status.SUCCESS, result, HttpStatusCode.OK);
     }

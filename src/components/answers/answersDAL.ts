@@ -10,14 +10,20 @@ class AnswersDAL {
         }
     }
 
-    async upvote(answerId: string, userId: string) {
+    async findAnswersByKeyword(query: string, page: number, limit: number) {
         try {
-            await AnswerModel.findByIdAndUpdate(answerId, {
-                $addToSet: {
-                    upvoters: userId
-                }
-            })
-        } catch(error) {
+            // this uses text search with indexes on the `title` and `excerpt` fields of the Question Collection 
+            return await AnswerModel.find({ $text: { $search: query } }).limit(limit).skip((page - 1) * limit);
+        } catch (error) { 
+            throw error;
+        }
+    }
+
+    async totalAnswersByKeyword(query: string) {
+        try {
+            // this uses text search with indexes on the `title` and `excerpt` fields of the Question Collection 
+            return await AnswerModel.find({ $text: { $search: query } }).countDocuments()
+        } catch (error) { 
             throw error;
         }
     }

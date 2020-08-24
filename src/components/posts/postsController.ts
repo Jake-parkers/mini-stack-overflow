@@ -9,7 +9,7 @@ import { Answer } from "../answers/answersSchema";
 import { VoteType } from "./postsDAL";
 
 class PostsController {
-    async upvote(postId: string, userId: string, postType: PostType, voteType: VoteType) {
+    async vote(postId: string, userId: string, postType: PostType, voteType: VoteType) {
         let result = await PostsService.vote(postId, userId, postType, voteType);
 
         if (result) {
