@@ -1,1 +1,0 @@
-{"version":3,"file":"searchValidator.js","sourceRoot":"","sources":["../../../../src/components/search/searchValidator.ts"],"names":[],"mappings":";;;AAAA,yDAA0C;AAE7B,QAAA,eAAe,GAAG;IAC3B,yBAAK,CAAC,MAAM,CAAC,CAAC,MAAM,EAAE,CAAC,IAAI,EAAE,CAAC,MAAM,EAAE;IACtC,yBAAK,CAAC,OAAO,CAAC,CAAC,QAAQ,EAAE,CAAC,MAAM,EAAE,CAAC,IAAI,EAAE,CAAC,MAAM,EAAE;CACrD,CAAA"}
