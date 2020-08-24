@@ -5,7 +5,9 @@ export interface Answer {
     userId: string,
     body: object,
     upvoters?: string[],
+    downvoters?: string[],
     upvotes?: number
+    downvotes?: number
 }
 
 const AnswersSchema = new mongoose.Schema({
@@ -22,6 +24,10 @@ const AnswersSchema = new mongoose.Schema({
         required: true
     },
     upvoters: {
+        type: Array,
+        required: false
+    },
+    downvoters: {
         type: Array,
         required: false
     }

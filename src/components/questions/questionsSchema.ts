@@ -6,7 +6,9 @@ export interface Question {
     tags: string[],
     askedBy: string,
     upvoters?: string[],
-    upvotes?: number
+    downvoters?: string[],
+    upvotes?: number,
+    downvotes?: number,
 }
 
 const QuestionsSchema = new mongoose.Schema({
@@ -28,7 +30,13 @@ const QuestionsSchema = new mongoose.Schema({
     },
     upvoters: {
         type: Array,
-        required: false
+        required: false,
+        default: []
+    },
+    downvoters: {
+        type: Array,
+        required: false,
+        default: []
     }
 }, {timestamps: true});
 
