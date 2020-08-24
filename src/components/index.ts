@@ -8,6 +8,7 @@ import { CommonErrors } from "../libraries/commonErrors";
 import users from "./users";
 import questions from "./questions";
 import answers from "./answers";
+import posts from "./posts";
 
 const router = express.Router();
 
@@ -55,6 +56,8 @@ router.use(requireAuthentication);
 
 router.use('/questions', questions);
 
-router.use('/answers', answers)
+router.use('/answers', answers);
+
+router.use('/posts', posts);
 
 export default router;

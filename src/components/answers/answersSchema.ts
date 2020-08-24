@@ -3,7 +3,9 @@ import mongoose from "mongoose";
 export interface Answer {
     questionId: string,
     userId: string,
-    body: object
+    body: object,
+    upvoters?: string[],
+    upvotes?: number
 }
 
 const AnswersSchema = new mongoose.Schema({
@@ -18,6 +20,10 @@ const AnswersSchema = new mongoose.Schema({
     userId: {
         type: mongoose.Types.ObjectId,
         required: true
+    },
+    upvoters: {
+        type: Array,
+        required: false
     }
 }, {timestamps: true});
 
