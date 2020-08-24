@@ -5,7 +5,7 @@ export const askQuestionValidator = [
     body('tags').isArray(),
     body('excerpt').notEmpty().trim().escape(),
     body('body').custom(value => {
-        if (!value || Object.keys(value).length === 0) return Promise.reject("Invalid Question Object")
+        if (!value || value.length === 0) return Promise.reject("Invalid Question Object")
         return true;
     }),
     body("userId").notEmpty().trim().escape().isMongoId()
