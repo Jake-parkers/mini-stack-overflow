@@ -1,20 +1,16 @@
 import express, { NextFunction } from "express";
-import { body, query, validationResult } from "express-validator";
+import { validationResult } from "express-validator";
 import { handleResponse } from "../index";
 import {ErrorResponse, Status} from "../../libraries/IResponse";
 import { HttpStatusCode } from "../../libraries/httpStatusCodes";
 import { CommonErrors } from "../../libraries/commonErrors";
 import { Request, Response } from "express-serve-static-core";
 import questionsController from "./questionsController";
-
+import { askQuestionValidator } from "./questionsValidator";
 const router = express.Router();
 
 
-const askQuestionValidator = [
-    body('title').notEmpty().trim().escape(),
-    body('tags').isArray(),
-    body("userId").notEmpty().trim().escape().isMongoId()
-]
+
 
 router.post('/ask', askQuestionValidator, async (req: Request, res: Response) => {
     const errors = validationResult(req);
