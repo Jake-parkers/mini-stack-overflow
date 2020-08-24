@@ -1,11 +1,13 @@
 import express, { NextFunction } from "express";
-import users from "./users";
-import questions from "./questions";
 import { IResponse, FailResponse, Status } from "../libraries/IResponse";
 import { Request, Response } from "express-serve-static-core";
 import jsonwebtoken from "jsonwebtoken";
 import { HttpStatusCode } from "../libraries/httpStatusCodes";
 import { CommonErrors } from "../libraries/commonErrors";
+
+import users from "./users";
+import questions from "./questions";
+import answers from "./answers";
 
 const router = express.Router();
 
@@ -52,5 +54,7 @@ router.use('/users', users);
 router.use(requireAuthentication);
 
 router.use('/questions', questions);
+
+router.use('/answers', answers)
 
 export default router;
