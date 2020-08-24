@@ -10,7 +10,8 @@ class AnswersController {
     async submitAnswer(answer: Answer): Promise<IResponse> {
         const result = await answersService.saveAnswer(answer);
         if (result instanceof AppError) return new ErrorResponse(Status.ERROR, CommonErrors.ASK_ERROR, result.httpCode);
-        await answersService.notify(result.questionId)
+
+        await answersService.notify(result.questionId);
         return new SuccessResponse(Status.SUCCESS, result, HttpStatusCode.CREATED);
     }
 }
