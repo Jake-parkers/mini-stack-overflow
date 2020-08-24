@@ -1,8 +1,12 @@
 import QuestionModel, { Question } from "./questionsSchema";
 
 class QuestionsDAL {
-    async getQuestion() {
-        return QuestionModel.find({});
+    async getQuestions(page: number, limit: number) {
+        try {
+            return QuestionModel.find({}).limit(limit).skip((page - 1) * limit);
+        } catch (error) {
+            throw error;
+        }
     }
 
     async getQuestionById(id: string) {
@@ -13,6 +17,14 @@ class QuestionsDAL {
         const newQuestion = new QuestionModel(question);
         try {
             return await (await newQuestion.save()).toObject();
+        } catch(error) {
+            throw error;
+        }
+    }
+
+    async totalQuestions() {
+        try {
+            return await QuestionModel.countDocuments();
         } catch(error) {
             throw error;
         }

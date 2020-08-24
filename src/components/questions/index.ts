@@ -1,5 +1,5 @@
-import express from "express";
-import { body, validationResult } from "express-validator";
+import express, { NextFunction } from "express";
+import { body, query, validationResult } from "express-validator";
 import { handleResponse } from "../index";
 import {ErrorResponse, Status} from "../../libraries/IResponse";
 import { HttpStatusCode } from "../../libraries/httpStatusCodes";
@@ -9,9 +9,6 @@ import questionsController from "./questionsController";
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-    res.send("Questions Route");
-});
 
 const askQuestionValidator = [
     body('title').notEmpty().trim().escape(),
@@ -27,6 +24,26 @@ router.post('/ask', askQuestionValidator, async (req: Request, res: Response) =>
     const { title, body, tags, userId } = req.body;
 
     const result = await questionsController.ask({title, body, tags, askedBy: userId});
+    handleResponse(result, res);
+});
+
+const checkViewQuestionsParams = (req: Request, res: Response, next: NextFunction) => {
+    if (!req.query.page){
+        // @ts-ignore
+        req.query.page = Number(process.env.DEFAULT_PAGE);
+    } 
+    if (!req.query.limit) {
+        // @ts-ignore
+        req.query.limit = Number(process.env.DEFAULT_LIMIT);
+    }
+    next();
+}
+
+
+router.get('/', checkViewQuestionsParams, async (req: Request, res: Response) => {
+    const { page, limit } = req.query;
+
+    const result = await questionsController.view(Number(page), Number(limit));
     handleResponse(result, res);
 })
 

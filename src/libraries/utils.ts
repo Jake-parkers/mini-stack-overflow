@@ -11,6 +11,14 @@ export interface JWTPayload {
     iat: number
 }
 
+export interface Paginate {
+    totalPages: number,
+    prevPage: number | null,
+    currentPage: number,
+    nextPage: number | null,
+    data: {[name: string]: any}
+}
+
 export default class Utils {
     static async generateSalt() {
         try {
@@ -64,5 +72,14 @@ export default class Utils {
         }
 
         return payload;
+    }
+
+    static getNextPage(totalDocs: number, totalPages: number, limit: number, currentPage: number) {
+        if ((totalDocs / limit) > 1) {
+            const nextPage = currentPage + 1;
+            if (nextPage > totalPages) return null
+            return nextPage;
+        }
+        else return null
     }
 }
