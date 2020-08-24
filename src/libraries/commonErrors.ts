@@ -11,5 +11,15 @@ export enum CommonErrors {
 
     INVALID_USER = "User does not exist",
 
-    INVALID_PASSWORD = "Password is not valid"
+    INVALID_PASSWORD = "Password is not valid",
+
+    ASK_ERROR = "Error while asking question",
+
+    AUTH_HEADER_MISSING = "No authorization header",
+
+    INVALID_TOKEN = "Invalid Token",
+
+    INVALID_TOKEN_TYPE = "Invalid Token Type",
+
+    UNAUTHORIZED = "User is not authorized to access resource"
 }
