@@ -10,7 +10,7 @@ class QuestionsDAL {
     }
 
     async getQuestionById(id: string) {
-        return QuestionModel.findOne({id})
+        return QuestionModel.findById(id);
     }
 
     async save(question: Question) {
@@ -64,6 +64,27 @@ class QuestionsDAL {
             return await QuestionModel.find({ $text: { $search: query } }).countDocuments();
         } catch (error) {
             throw error;
+        }
+    }
+
+    async saveSubscription(userId: string, questionId: string) {
+        try {
+             return await QuestionModel.findByIdAndUpdate(questionId, {
+                 $addToSet: {
+                    subscribers: userId
+                 }
+             }, { new: true })
+        } catch(error) {
+            throw error;
+        }
+    }
+
+    async getSubscribers(questionId: string) {
+        try {
+            const question = await this.getQuestionById(questionId) as unknown as Question
+            return !question ? [] : question.subscribers;
+        } catch (error) {
+            throw error
         }
     }
 }

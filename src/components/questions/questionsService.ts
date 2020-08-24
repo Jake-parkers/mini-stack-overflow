@@ -25,6 +25,15 @@ class QuestionsService {
             return new AppError("", HttpStatusCode.INTERNAL_SERVER_ERROR, CommonErrors.DATABASE_ERROR, false);
         }
     }
+
+    async createSubscription(userId: string, questionId: string) {
+        try {
+            return await questionsDAL.saveSubscription(userId, questionId);
+        } catch (error) {
+            handler.handleError(error);
+            return new AppError("", HttpStatusCode.INTERNAL_SERVER_ERROR, CommonErrors.DATABASE_ERROR, false);
+        }
+    }
 }
 
 export default new QuestionsService();

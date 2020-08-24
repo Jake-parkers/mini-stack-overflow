@@ -6,11 +6,8 @@ import { HttpStatusCode } from "../../libraries/httpStatusCodes";
 import { CommonErrors } from "../../libraries/commonErrors";
 import { Request, Response } from "express-serve-static-core";
 import questionsController from "./questionsController";
-import { askQuestionValidator } from "./questionsValidator";
+import { askQuestionValidator, subscriptionValidator } from "./questionsValidator";
 const router = express.Router();
-
-
-
 
 router.post('/ask', askQuestionValidator, async (req: Request, res: Response) => {
     const errors = validationResult(req);
@@ -39,6 +36,13 @@ router.get('/', checkPaginationParams, async (req: Request, res: Response) => {
     const { page, limit } = req.query;
 
     const result = await questionsController.view(Number(page), Number(limit));
+    handleResponse(result, res);
+});
+
+router.post('/subscribe', subscriptionValidator, async (req: Request, res: Response) => {
+    const { questionId, userId } = req.body;
+    
+    const result = await questionsController.subscribe(userId as string, questionId as string);
     handleResponse(result, res);
 })
 
