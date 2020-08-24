@@ -42,9 +42,22 @@ npm start
 ```
 
 ## Data Model
-![Simple Stack Overflow Clone Data Model](/assets/images/datamodel.PNG)
 
 The data model used for this project is shown below
+
+![Simple Stack Overflow Clone Data Model](/assets/images/datamodel.PNG)
+
+## NOTES
+
+This project assumes that a WYSIWYG editor is used to ask and answer questions. In particular, it assumes that [quilljs](https://quilljs.com/) is used as the editor. Hence all questions asked are saved in the form of a [quill delta document](https://quilljs.com/docs/delta/). An example is shown below:
+
+```
+[
+    { insert: 'The Two Towers' },
+    { insert: '\n', attributes: { header: 1 } },
+    { insert: 'Aragorn sped on up the hill.\n' }
+]
+```
 
 The search implementation in this project was inspired by that of Stack Overflow.
 
