@@ -6,8 +6,9 @@ export interface Answer {
     body: object,
     upvoters?: string[],
     downvoters?: string[],
-    upvotes?: number
-    downvotes?: number
+    upvotes?: number,
+    downvotes?: number,
+    excerpt: string
 }
 
 const AnswersSchema = new mongoose.Schema({
@@ -18,6 +19,11 @@ const AnswersSchema = new mongoose.Schema({
     body: {
         type: Object,
         required: true
+    },
+    excerpt: {
+        type: String,
+        required: true,
+        maxlength: 200
     },
     userId: {
         type: mongoose.Types.ObjectId,

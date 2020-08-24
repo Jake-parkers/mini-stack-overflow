@@ -15,9 +15,9 @@ router.post('/submit', submitAnswerValidator, async (req: Request, res: Response
 
     if (!errors.isEmpty()) return handleResponse(new ErrorResponse(Status.FAIL, CommonErrors.BAD_PARAMETERS, HttpStatusCode.BAD_REQUEST), res);
 
-    const { questionId, answer, userId } = req.body;
+    const { questionId, answer, userId, excerpt } = req.body;
 
-    const result = await answersController.submitAnswer({questionId, body: answer, userId});
+    const result = await answersController.submitAnswer({questionId, body: answer, userId, excerpt});
     handleResponse(result, res);
 });
 

@@ -17,13 +17,13 @@ router.post('/ask', askQuestionValidator, async (req: Request, res: Response) =>
 
     if (!errors.isEmpty()) return handleResponse(new ErrorResponse(Status.FAIL, CommonErrors.BAD_PARAMETERS, HttpStatusCode.BAD_REQUEST), res);
 
-    const { title, body, tags, userId } = req.body;
+    const { title, body, tags, userId, excerpt } = req.body;
 
-    const result = await questionsController.ask({title, body, tags, askedBy: userId});
+    const result = await questionsController.ask({title, body, tags, askedBy: userId, excerpt});
     handleResponse(result, res);
 });
 
-const checkViewQuestionsParams = (req: Request, res: Response, next: NextFunction) => {
+const checkPaginationParams = (req: Request, res: Response, next: NextFunction) => {
     if (!req.query.page){
         // @ts-ignore
         req.query.page = Number(process.env.DEFAULT_PAGE);
@@ -35,8 +35,7 @@ const checkViewQuestionsParams = (req: Request, res: Response, next: NextFunctio
     next();
 }
 
-
-router.get('/', checkViewQuestionsParams, async (req: Request, res: Response) => {
+router.get('/', checkPaginationParams, async (req: Request, res: Response) => {
     const { page, limit } = req.query;
 
     const result = await questionsController.view(Number(page), Number(limit));

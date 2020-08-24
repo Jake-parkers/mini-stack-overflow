@@ -26,6 +26,26 @@ class UsersDAL {
             throw error;
         }
     }
+
+    async findUsersByName(query: string, page: number, limit: number) {
+        try {
+            return await UserModel.find({
+                displayName: { $regex: '(?i).*' + query + '.*' } 
+            }).select("-password").limit(limit).skip((page - 1) * limit)
+        } catch (error) {
+            throw error;
+        }
+    }
+
+    async totalUsersByName(query: string) {
+        try {
+            return await UserModel.find({
+                displayName: { $regex: '(?i).*' + query + '.*' } 
+            }).select("-password").countDocuments()
+        } catch (error) {
+            throw error;
+        }
+    }
 }
 
 export default new UsersDAL();

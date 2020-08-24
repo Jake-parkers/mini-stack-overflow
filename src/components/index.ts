@@ -9,6 +9,7 @@ import users from "./users";
 import questions from "./questions";
 import answers from "./answers";
 import posts from "./posts";
+import search from "./search";
 
 const router = express.Router();
 
@@ -46,6 +47,7 @@ export const handleResponse = function(
     res.status(response.httpCode).send(resp)
   };
 
+
 router.get('/', (req: Request, res: Response) => {
     res.status(200).send("Mini Stack Overflow Clone");
 });
@@ -59,5 +61,7 @@ router.use('/questions', questions);
 router.use('/answers', answers);
 
 router.use('/posts', posts);
+
+router.use('/search', search);
 
 export default router;

@@ -9,6 +9,7 @@ export interface Question {
     downvoters?: string[],
     upvotes?: number,
     downvotes?: number,
+    excerpt: string
 }
 
 const QuestionsSchema = new mongoose.Schema({
@@ -27,6 +28,11 @@ const QuestionsSchema = new mongoose.Schema({
     askedBy: {
         type: mongoose.Types.ObjectId,
         required: true
+    },
+    excerpt: {
+        type: String,
+        required: true,
+        maxlength: 200
     },
     upvoters: {
         type: Array,

@@ -20,7 +20,7 @@ router.post('/:postId/vote', voteValidator, async (req: Request, res: Response) 
     const { postType, voteType } = req.query;
     const { postId } = req.params;
 
-    const result = await PostsController.upvote(postId as string, userId, postType === PostType.ANSWER ? PostType.ANSWER : PostType.QUESTION, voteType === VoteType.DOWN ? VoteType.DOWN : VoteType.UP)
+    const result = await PostsController.vote(postId as string, userId, postType === PostType.ANSWER ? PostType.ANSWER : PostType.QUESTION, voteType === VoteType.DOWN ? VoteType.DOWN : VoteType.UP)
     handleResponse(result, res);
 });
 
