@@ -10,3 +10,7 @@ export const askQuestionValidator = [
     }),
     body("userId").notEmpty().trim().escape().isMongoId()
 ]
+
+export const subscriptionValidator = [
+    body("questionId").notEmpty().trim().escape().isMongoId(),
+]

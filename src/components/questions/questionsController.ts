@@ -19,6 +19,12 @@ class QuestionsController {
         if (result instanceof AppError) return new ErrorResponse(Status.ERROR, "", result.httpCode);
         return new SuccessResponse(Status.SUCCESS, result, HttpStatusCode.OK);
     }
+
+    async subscribe(userId: string, questionId: string) {
+        let result = await questionsService.createSubscription(userId, questionId);
+        if (result instanceof AppError) return new ErrorResponse(Status.ERROR, "", result.httpCode);
+        return new SuccessResponse(Status.SUCCESS, result, HttpStatusCode.OK);
+    }
 }
 
 export default new QuestionsController();

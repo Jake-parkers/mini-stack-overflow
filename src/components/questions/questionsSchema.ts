@@ -9,7 +9,8 @@ export interface Question {
     downvoters?: string[],
     upvotes?: number,
     downvotes?: number,
-    excerpt: string
+    excerpt: string;
+    subscribers?: string[];
 }
 
 const QuestionsSchema = new mongoose.Schema({
@@ -40,6 +41,11 @@ const QuestionsSchema = new mongoose.Schema({
         default: []
     },
     downvoters: {
+        type: Array,
+        required: false,
+        default: []
+    },
+    subscribers: {
         type: Array,
         required: false,
         default: []
